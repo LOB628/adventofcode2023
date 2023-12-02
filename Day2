@@ -1,0 +1,9 @@
+from functools import reduce
+import re
+part1=sum(int(re.search("Game (\d+)",i)[1]) 
+    for i in open("input") 
+    if all(max(map(int,re.findall(rf"(\d+) {c}",i)))<=v for c,v in {"red":12,'green':13,'blue':14}.items()))
+part2=sum(
+    reduce((lambda x, y: x * y), [max(map(int, re.findall(rf"(\d+) {c}", i))) for c in ("red", "green", "blue")])
+    for i in open("input")
+)
